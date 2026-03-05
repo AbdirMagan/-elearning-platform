@@ -1,0 +1,13 @@
+services:
+  - name: maganacademy
+    type: web
+    runtime: python
+    plan: free
+   
+    buildCommand: './build.sh'
+    startCommand: python -m gunicorn elearning.asgi:application -k uvicorn.workers.UvicornWorker 
+    # healthCheckPath: /
+    # Run DB migrations and collectstatic after each deploy
+    postDeploy:
+      - python manage.py migrate --noinput
+      - python manage.py collectstatic --noinput
