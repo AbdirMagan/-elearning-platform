@@ -5,7 +5,7 @@ services:
     plan: free
    
     buildCommand: './build.sh'
-    startCommand: python -m gunicorn elearning.asgi:application -k uvicorn.workers.UvicornWorker 
+    startCommand: gunicorn elearning.wsgi:application
     # healthCheckPath: /
     # Run DB migrations and collectstatic after each deploy
     postDeploy:
